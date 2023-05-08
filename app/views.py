@@ -6,6 +6,7 @@ from .forms import LoginForm
 from .models import User
 from .utils import hash_password
 from config import ADMIN_LOGIN, ADMIN_PASSWORD
+# from .database import db_session
 
 
 @app.route('/')
