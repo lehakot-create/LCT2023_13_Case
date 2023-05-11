@@ -1,0 +1,38 @@
+{% extends 'admin.html' %}
+
+{% block create_user %}
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Логи</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Дата</th>
+                            <th>Действие</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Дата</th>
+                            <th>Действие</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        {% for message in messages %}
+                            <tr>
+                                <td>{{ message.name }}</td>
+                                <td>{{ message.date_time }}</td>
+                                <td>{{ message.action }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock create_user %}
