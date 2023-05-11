@@ -1,6 +1,22 @@
-{% extends 'base.html' %}
+{% extends 'template.html' %}
 
+{% block adminpanel %}
+<hr class="sidebar-divider my-0">
+<li class="nav-item active">
+    <a class="nav-link" href="/create_user">
+        Создать пользователя
+    </a>
+</li>
+<hr class="sidebar-divider my-0">
+{% endblock adminpanel %}
 
 {% block content %}
+
 <p>Admin panel</p>
+
+
+{% block create_user %}
+{% endblock create_user%}
+
 {% endblock content %}
+

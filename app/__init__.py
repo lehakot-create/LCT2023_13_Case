@@ -1,7 +1,9 @@
 from flask import Flask
 from flask_login import LoginManager
 
-from .db_query import get_user, get_user_by_id
+from .db_query import get_user, get_user_by_id, create_admin
+from config import ADMIN_LOGIN, ADMIN_PASSWORD
+from .models import User
 
 
 app = Flask(__name__)
@@ -12,14 +14,21 @@ login_manager.init_app(app)
 login_manager.login_view = 'login'
 
 
-# @login_manager.user_loader
-# def load_user(username):
-#     return get_user(username)
+def create_administrator():
+    create_admin(ADMIN_LOGIN, ADMIN_PASSWORD)
 
 
 @login_manager.user_loader
 def load_user(user_id):
-    return get_user_by_id(user_id)
+    return User.query.get(user_id)
+
+
+create_administrator()
+
+
+# @login_manager.user_loader
+# def load_user(user_id):
+#     return get_user_by_id(user_id)
 
 
 from app import views

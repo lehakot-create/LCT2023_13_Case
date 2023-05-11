@@ -9,4 +9,4 @@ class User(Base, UserMixin):
     id = Column(Integer, primary_key=True)
     name = Column(String(50), unique=True)
     password = Column(String(64), unique=True)
-    change_password = Column(Boolean, default=False)
+    password_is_change = Column(Boolean, default=False)

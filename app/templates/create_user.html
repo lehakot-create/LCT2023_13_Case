@@ -1,0 +1,17 @@
+{% extends 'admin.html' %}
+
+
+{% block create_user %}
+<h3>Create new user</h1>
+    <form action="" method="POST" name="create_user">
+        {{form.hidden_tag()}}
+        <p>
+            {{ form.name.label }} {{ form.name(size=20) }}
+        </p>
+        <p>
+            {{ form.password.label }} {{ form.password(size=20) }}
+        </p>
+        <p><input type="submit" value="Create"></p>
+    </form>
+
+{% endblock create_user%}
