@@ -33,7 +33,7 @@ def create_admin(login: str, password: str):
         db_session.commit()
     except Exception as e:
         db_session.rollback()
-        # print(e)
+        print(e)
         print('Администратор уже создан')
 
 

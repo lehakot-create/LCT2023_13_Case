@@ -1,13 +1,14 @@
 from flask import render_template, redirect, session, url_for, request
-from flask_login import login_required, login_user
+from flask_login import login_user
 
 from app import app
 from .forms import LoginForm, ChangePassword
-from .models import User, ActionLog
+from .models import ActionLog
 from .utils import hash_password
 from config import ADMIN_LOGIN, ADMIN_PASSWORD
 from .database import db_session
-from .db_query import action_log, get_user, create_new_user, change_user_password
+from .db_query import action_log, get_user, create_new_user, \
+    change_user_password
 from .decorator import authorization_required, admin_only
 
 
@@ -90,9 +91,10 @@ def create_user():
                 db_session.rollback()
                 print(e)
                 action_log(session.get('username', None), 'error create user')
-                return render_template('blank_admin.html',
-                                       user=username,
-                                       message='Ошибка при создании пользователя')
+                return render_template(
+                    'blank_admin.html',
+                    user=username,
+                    message='Ошибка при создании пользователя')
             action_log(session.get('username', None), 'success create user')
             return render_template('blank_admin.html',
                                    user=username,
@@ -113,14 +115,16 @@ def change_password():
 
             old_password = form.old_password.data
             if hash_password(old_password) != user.password:
-                action_log(session.get('username', None), 'error change password')
+                action_log(session.get('username', None),
+                           'error change password')
                 return render_template('blank.html',
                                        message='Не корректный старый пароль')
 
             new_password = form.new_password.data
             repeat_new_password = form.repeat_new_password.data
             if new_password != repeat_new_password or new_password is None:
-                action_log(session.get('username', None), 'error change password')
+                action_log(session.get('username', None),
+                           'error change password')
                 return render_template('blank.html',
                                        message='Новые пароли не совпадают')
             try:
@@ -128,10 +132,13 @@ def change_password():
             except Exception as e:
                 db_session.rollback()
                 print('Пароль уже используется', e)
-                action_log(session.get('username', None), 'error change password')
-                return render_template('blank.html',
-                                       message='Пароль уже используется. Выберите другой.')
-            action_log(session.get('username', None), 'success change password')
+                action_log(session.get('username', None),
+                           'error change password')
+                return render_template(
+                    'blank.html',
+                    message='Пароль уже используется. Выберите другой.')
+            action_log(session.get('username', None),
+                       'success change password')
             return render_template('blank.html',
                                    message='Пароль успешно изменен')
 
