@@ -1,6 +1,6 @@
-from .models import User, ActionLog
-from .utils import hash_password
-from .database import db_session
+from models import User, ActionLog
+from utils import hash_password
+from database import db_session
 
 
 def get_user_password(username: str):

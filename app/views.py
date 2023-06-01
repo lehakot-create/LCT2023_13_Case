@@ -1,15 +1,16 @@
 from flask import render_template, redirect, session, url_for, request
 from flask_login import login_user
 
-from app import app
-from .forms import LoginForm, ChangePassword
-from .models import ActionLog
-from .utils import hash_password
+# from app import app
+from __init__ import app
+from forms import LoginForm, ChangePassword
+from models import ActionLog
+from utils import hash_password
 from config import ADMIN_LOGIN, ADMIN_PASSWORD
-from .database import db_session
-from .db_query import action_log, get_user, create_new_user, \
+from database import db_session
+from db_query import action_log, get_user, create_new_user, \
     change_user_password
-from .decorator import authorization_required, admin_only
+from decorator import authorization_required, admin_only
 
 
 @app.route('/')

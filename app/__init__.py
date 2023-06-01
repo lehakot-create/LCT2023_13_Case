@@ -1,9 +1,9 @@
 from flask import Flask
 from flask_login import LoginManager
 
-from .db_query import get_user, get_user_by_id, create_admin
+from db_query import get_user, get_user_by_id, create_admin
 from config import ADMIN_LOGIN, ADMIN_PASSWORD
-from .models import User
+from models import User
 
 
 app = Flask(__name__)
@@ -26,4 +26,4 @@ def load_user(user_id):
 create_administrator()
 
 
-from app import views
+from views import *

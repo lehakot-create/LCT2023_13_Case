@@ -1,7 +1,7 @@
 import os
 from dotenv import load_dotenv
 
-load_dotenv('.env')
+load_dotenv('./.env')
 
 CSRF_ENABLED = True
 SECRET_KEY = os.environ.get('SECRET_KEY')

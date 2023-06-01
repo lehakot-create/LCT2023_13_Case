@@ -16,4 +16,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD ["python3", "run.py"]
+# CMD ["python3", "run.py"]
