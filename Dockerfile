@@ -10,10 +10,9 @@ RUN apk update \
     && apk add libffi-dev
 
 RUN pip install --upgrade pip
+
 COPY ./requirements.txt .
-RUN pip install -r requirements.txt
 
+RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
-
-# CMD ["python3", "run.py"]
+COPY ./app .
